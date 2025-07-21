@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Launch Extension in Windsurf",
+      "type": "shell",
+      "command": "open -a Windsurf --args --extensionDevelopmentPath=",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

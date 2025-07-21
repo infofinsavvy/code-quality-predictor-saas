@@ -1,0 +1,33 @@
+{
+  "name": "code-quality-predictor-api",
+  "version": "1.0.0",
+  "description": "Backend API for Code Quality Predictor SaaS",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/local-server.js",
+    "start": "node src/local-server.js",
+    "supabase": "node src/index.js",
+    "build": "echo 'Build completed'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["code-quality", "api", "saas"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "helmet": "^7.1.0",
+    "stripe": "^14.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "rate-limiter-flexible": "^2.4.2",
+    "pg": "^8.11.3",
+    "bcrypt": "^5.1.1",
+    "joi": "^17.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

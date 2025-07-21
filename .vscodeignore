@@ -1,0 +1,52 @@
+# Source files
+src/**
+.clj-kondo/**
+.idea/**
+.lsp/**
+tsconfig.json
+webpack.config.js
+.eslintrc.json
+**/*.ts
+
+# Build artifacts
+out/**
+**/*.map
+node_modules/**
+!node_modules/@types
+*.vsix
+
+# Git & GitHub files
+.gitignore
+.git/**
+.github/**
+
+# Backup and temp files
+backup/**
+*.old
+*.bak
+*.backup
+*.bak?
+*.sh
+*.patch
+
+# VS Code specific files
+.vscode/**
+.vscode-test/**
+vsc-extension-quickstart.md
+.yarnrc
+
+# Documentation (except for essential files)
+**/TRANSFORMATION_SUMMARY.md
+**/strategey.md
+test-*.js
+*.iml
+i.js
+update_api.js
+dev.sh
+fix.patch
+
+# Keep important files
+!README.md
+!LICENSE.md
+!CHANGELOG.md
+!resources/icon.png

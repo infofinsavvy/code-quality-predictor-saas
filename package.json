@@ -1,0 +1,273 @@
+{
+  "name": "code-quality-predictor",
+  "displayName": "AI Code Quality Predictor - Smart Issue Detection",
+  "description": "Predict and prevent code quality issues with AI-powered analysis, bug detection, and technical debt tracking",
+  "version": "2.0.0",
+  "publisher": "FinsavvyAI",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Linters",
+    "Testing",
+    "Data Science",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "code quality",
+    "bug prediction",
+    "ai",
+    "static analysis",
+    "machine learning",
+    "technical debt",
+    "security",
+    "analytics"
+  ],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeQuality.showQuality",
+        "title": "Show Quality Score",
+        "category": "Code Quality",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "codeQuality.analyzeFile",
+        "title": "Analyze Current File",
+        "category": "Code Quality",
+        "icon": "$(search)"
+      },
+      {
+        "command": "codeQuality.scanProject",
+        "title": "Scan Entire Project",
+        "category": "Code Quality",
+        "icon": "$(telescope)"
+      },
+      {
+        "command": "codeQuality.predictIssues",
+        "title": "Predict Quality Issues",
+        "category": "Code Quality",
+        "icon": "$(warning)"
+      },
+      {
+        "command": "codeQuality.analyzePatterns",
+        "title": "Analyze Code Patterns",
+        "category": "Code Quality",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "codeQuality.exportReport",
+        "title": "Export Quality Report",
+        "category": "Code Quality",
+        "icon": "$(export)"
+      },
+      {
+        "command": "codeQuality.trackComplexity",
+        "title": "Track Code Complexity",
+        "category": "Code Quality",
+        "icon": "$(dashboard)"
+      },
+      {
+        "command": "codeQuality.showHistory",
+        "title": "Show Quality History",
+        "category": "Code Quality",
+        "icon": "$(history)"
+      },
+      {
+        "command": "codeQuality.clearHistory",
+        "title": "Clear History",
+        "category": "Code Quality",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "codeQuality.generateTestData",
+        "title": "Generate Test Data",
+        "category": "Code Quality",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "codeQuality.toggleAnalysis",
+        "title": "Toggle Auto Analysis",
+        "category": "Code Quality",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "codeQuality.refresh",
+        "title": "Refresh",
+        "category": "Code Quality",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "codeQuality.openSettings",
+        "title": "Open Settings",
+        "category": "Code Quality",
+        "icon": "$(settings-gear)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeQuality",
+          "title": "Code Quality Predictor",
+          "icon": "$(pulse)"
+        }
+      ]
+    },
+    "views": {
+      "codeQuality": [
+        {
+          "id": "codeQualityView",
+          "name": "Quality Analysis",
+          "icon": "$(pulse)",
+          "contextualTitle": "Code Quality Predictor"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "codeQualityView",
+        "contents": "Welcome to AI Code Quality Predictor!\n\nPrevent bugs and improve code quality with AI-powered analysis.\n\n[Analyze Current File](command:codeQuality.analyzeFile)\n[Scan Project](command:codeQuality.scanProject)\n[Predict Issues](command:codeQuality.predictIssues)\n\nTo learn more [read our docs](https://github.com/FinsavvyAI/code-quality-predictor)."
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "codeQuality.analyzeFile",
+          "when": "view == codeQualityView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "codeQuality.predictIssues",
+          "when": "view == codeQualityView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "codeQuality.analyzePatterns",
+          "when": "view == codeQualityView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "codeQuality.exportReport",
+          "when": "view == codeQualityView",
+          "group": "navigation@4"
+        },
+        {
+          "command": "codeQuality.refresh",
+          "when": "view == codeQualityView",
+          "group": "navigation@5"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "codeQuality.showHistory",
+          "when": "view == codeQualityView"
+        },
+        {
+          "command": "codeQuality.clearHistory",
+          "when": "view == codeQualityView"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "codeQuality.generateTestData",
+          "when": "codeQuality.debugMode"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Quality Predictor",
+      "properties": {
+        "codeQuality.qualityThreshold": {
+          "type": "number",
+          "default": 75,
+          "description": "Minimum quality score threshold (0-100)"
+        },
+        "codeQuality.notifyOnLowQuality": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notification when quality is below threshold"
+        },
+        "codeQuality.bugRiskThreshold": {
+          "type": "number",
+          "default": 30,
+          "description": "Bug risk threshold for warnings (0-100)"
+        },
+        "codeQuality.autoAnalyzeOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically analyze code quality on file save"
+        },
+        "codeQuality.analysisDepth": {
+          "type": "string",
+          "enum": [
+            "fast",
+            "thorough",
+            "deep"
+          ],
+          "default": "thorough",
+          "description": "Depth of code analysis"
+        },
+        "codeQuality.enableSecurityAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable security vulnerability detection"
+        },
+        "codeQuality.enablePerformanceAnalysis": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable performance issue detection"
+        },
+        "codeQuality.debugMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug mode with detailed logging"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package-extension",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package-extension": "webpack --mode production --devtool hidden-source-map",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.28.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^4.9.3",
+    "vsce": "^2.15.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FinsavvyAI/code-quality-predictor"
+  },
+  "bugs": {
+    "url": "https://github.com/FinsavvyAI/code-quality-predictor/issues"
+  },
+  "homepage": "https://github.com/FinsavvyAI/code-quality-predictor#readme",
+  "license": "MIT",
+  "pricing": "Free"
+}
